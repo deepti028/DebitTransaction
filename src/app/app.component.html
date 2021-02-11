@@ -1,0 +1,20 @@
+<div class="container-fluid vert-center center">
+    <div *ngIf="!(isNavigated$ | async) && !paymentData" class="center pay-info m-2 rounded p-4">
+        <h1 class="mr-4">Make hassle-free payments with Cred Pay!</h1>
+        <button type="button" class="btn btn-primary" routerLink="/payment">Proceed to Pay</button>
+    </div>
+    <div *ngIf="paymentData" class="center flex-column">
+        <h2>Your Payment Details</h2>
+        <div class="box-blur">
+            <h3 class="card-name">{{paymentData.cardHolder}}</h3>
+            <div class="card-num">{{paymentData.creditCardNumber}}</div>
+            <br>
+            <div class="float-right">EXP(mm/dd/yy): <i>{{paymentData.expirationDate | date: 'shortDate'}}</i></div>
+        </div>
+        <div class="box-blur">
+            CVV: <span class="card-cvv">{{paymentData.cvv || '---'}}</span>
+            <div class="card-amt"><em>{{paymentData.amount}}</em><strong>&nbsp;PAID</strong></div>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>
